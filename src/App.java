@@ -21,14 +21,20 @@ public class App {
                 case 1:
                     show.showMessage("Ingresar Persona");
                     peopleModel = Arrays.copyOf(people, people.length+1);
-                    peopleModel[peopleModel.length-1] = new Person(show.inputInt("Edad: "), show.inputString("Nombre: "));
-                    show.showMessage("Persona Ingresada");
+                    while (true) {
+                        int edad = show.inputInt("Edad: ");
+                        if (edad>-1) {
+                            peopleModel[peopleModel.length-1] = new Person(edad, show.inputString("Nombre: "));
+                            show.showMessage("Persona Ingresada");
+                            break;
+                        } else show.showMessage("(Edad No Valida)");
+                    }
                     break;
                 case 2:
                     if (people.length>0) {
                         busqueda = new BusquedaBinaria(people);
                         busqueda.showPerson();
-                    } else show.showMessage("(No hay estudiantes registrados)");
+                    } else show.showMessage("(No hay personas registrados)");
                 case 3:
                     show.showMessage("Shutting Down...");
                 default:
